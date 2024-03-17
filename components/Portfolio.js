@@ -56,8 +56,8 @@ const Portfolio = () => {
                     <div className="details">
                       <span>{value.title}</span>
                       <div style={{display:"flex",  justifyContent : "center", gap : '20px'}}>
-                        <a href={value.githuburl}><button style={{padding:'10px 20px'}}>Github</button></a>
-                        <a href={value.liveurl}><button style={{padding:'10px 20px'}}>Live</button></a>
+                        <a href={value.githuburl}><img src={`/img/svg/social/github.svg`} alt="" /></a>
+                        <a href={value.liveurl}><img src={`/img/svg/right-arrow.svg`} alt="" /></a>
                       </div>
                     </div>
                   </div>
