@@ -46,10 +46,10 @@ const Portfolio = () => {
               {
                 projectData.map((value) => {
                   return <li className={`detail ${activeContent("detail")}`} key={value.id}>
-                  <div className="list_inner" style={{border : '2px solid black'}}>
+                  <div className="list_inner">
                     <div className="image">
                       <img src="/img/thumbs/1-1.jpg" alt="image" />
-                      <div className="main" data-img-url={value.image} />
+                      <div className="main" data-img-url={value.image} style={{border : '2px solid black'}}/>
                     </div>
                     <div className="overlay" />
                     <img className="svg" src="/img/svg/text.svg" alt="image" />
