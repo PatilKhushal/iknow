@@ -3,8 +3,7 @@ import { context } from "@/context/context";
 import { useContext } from "react";
 import ModalLayout from "./ModalLayout";
 const PortfolioPopup = () => {
-  const { setPortfolioModal, currentPortfolio } = useContext(context);
-  console.log("currentPortfolio", currentPortfolio);
+  const { setPortfolioModal, portfolioModal  } = useContext(context);
   return (
     <ModalLayout nullValue={setPortfolioModal}>
       <div className="popup_details">
@@ -13,8 +12,8 @@ const PortfolioPopup = () => {
           <div
             className="main"
             data-img-url={
-              currentPortfolio?.image
-                ? currentPortfolio.image
+              portfolioModal?.image
+                ? portfolioModal.image
                 : "/img/portfolio/8.jpg"
             }
           />
@@ -26,8 +25,8 @@ const PortfolioPopup = () => {
         </div>
         <div className="main_details">
           <div className="textbox">
-            {currentPortfolio?.desc ? (
-              <p> {currentPortfolio.desc} </p>
+            {portfolioModal?.desc ? (
+              <p> {portfolioModal.desc} </p>
             ) : (
               <>
                 <p>
@@ -46,18 +45,18 @@ const PortfolioPopup = () => {
           </div>
           <div className="detailbox">
             <ul>
-              {currentPortfolio?.client ? (
-                currentPortfolio.client
+              {portfolioModal?.client ? (
+                portfolioModal.client
               ) : (
                 <li>
                   <span className="first">Client</span>
                   <span>Alvaro Morata</span>
                 </li>
               )}
-              {currentPortfolio?.techstack ? (
+              {portfolioModal?.techstack ? (
                 <li>
                   <span className="first">Tech Stack</span>
-                  {currentPortfolio.techstack.map((value) => {
+                  {portfolioModal.techstack.map((value) => {
                     return (
                       <span>
                         <a href="#">{value}</a>
@@ -76,8 +75,8 @@ const PortfolioPopup = () => {
               <li>
                 <span className="first">Date</span>
                 <span>
-                  {currentPortfolio?.date
-                    ? currentPortfolio.date
+                  {portfolioModal?.date
+                    ? portfolioModal.date
                     : "March 07, 2021"}
                 </span>
               </li>
@@ -117,12 +116,12 @@ const PortfolioPopup = () => {
                 <span className="first">Links</span>
                 <ul className="share">
                   <li>
-                    <a href={currentPortfolio?.githuburl ?? '#'}>
+                    <a href={portfolioModal?.githuburl ?? '#'}>
                     <img src={`/img/svg/social/github.svg`} alt="" />
                     </a>
                   </li>
                   <li>
-                    <a href={currentPortfolio?.liveurl ?? '#'}>
+                    <a href={portfolioModal?.liveurl ?? '#'}>
                     <img src={`/img/svg/right-arrow.svg`} alt="" />
                     </a>
                   </li>
@@ -140,8 +139,8 @@ const PortfolioPopup = () => {
                   <div
                     className="main"
                     data-img-url={
-                      currentPortfolio?.image
-                        ? currentPortfolio.image
+                      portfolioModal?.image
+                        ? portfolioModal.image
                         : "/img/portfolio/1.jpg"
                     }
                   />
@@ -155,8 +154,8 @@ const PortfolioPopup = () => {
                   <div
                     className="main"
                     data-img-url={
-                      currentPortfolio?.image
-                        ? currentPortfolio.image
+                      portfolioModal?.image
+                        ? portfolioModal.image
                         : "/img/portfolio/2.jpg"
                     }
                   />
@@ -170,8 +169,8 @@ const PortfolioPopup = () => {
                   <div
                     className="main"
                     data-img-url={
-                      currentPortfolio?.image
-                        ? currentPortfolio.image
+                      portfolioModal?.image
+                        ? portfolioModal.image
                         : "/img/portfolio/3.jpg"
                     }
                   />

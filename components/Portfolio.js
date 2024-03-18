@@ -2,7 +2,7 @@ import { context } from "@/context/context";
 import { useContext, useState } from "react";
 
 const Portfolio = () => {
-  const { setPortfolioModal, modalToggle, projectData, setCurrentPortfolio } = useContext(context);
+  const { setPortfolioModal, modalToggle, projectData } = useContext(context);
   const [active, setActive] = useState("all");
   console.log('active', active);
   const activeLi = (value) => (active == value ? "current" : "");
@@ -70,8 +70,7 @@ const Portfolio = () => {
                 onClick={(e) => {
                   e.preventDefault();
                   modalToggle(true);
-                  setPortfolioModal(true);
-                  setCurrentPortfolio(value);
+                  setPortfolioModal(value);
                 }}
               />
                   </div>

@@ -3,17 +3,7 @@ import { useContext, useEffect } from "react";
 
 const Service = () => {
   const { modalToggle, setServiceModal, serviceData } = useContext(context);
-  /* useEffect(() => {
-    console.log('userData', userData);
-    let data = userData?.services
-    let serviceData = data && data.map((value) => {
-      return {...value, id : value._id}
-    })
-    console.log('serviceData', serviceData)
-    setServiceData(data);
-  },[userData]); */
-
-  return (
+   return (
     <div className="iknow_tm_services">
       <div className="iknow_tm_main_title">
         <span>Service</span>

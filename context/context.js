@@ -28,7 +28,6 @@ const type = {
   TESTIMONALDATA: "TESTIMONALDATA",
   SOCIALDATA: "SOCIALDATA",
   PROJECTDATA: "PROJECTDATA",
-  CURRENTPORTFOLIO : "CURRENTPORTFOLIO",
   SOFTWARESKILL : "SOFTWARESKILL" 
 };
 const {
@@ -45,7 +44,6 @@ const {
   SKILLDATA,
   EDUCATIONDATA,
   EXPERIENCEDATA,
-  CURRENTPORTFOLIO,
   SOFTWARESKILL
 } = type;
 
@@ -118,11 +116,6 @@ const reducer = (state, action) => {
       return {
         ...state,
         projectData: payload,
-      };
-    case CURRENTPORTFOLIO:
-      return {
-        ...state,
-        currentPortfolio: payload,
       };
     case SOFTWARESKILL:
       return {
@@ -328,7 +321,6 @@ const state = (props) => {
       },
     ],
     projectData: null,
-    currentPortfolio : null,
     softwareSkills : [
       { id: 1, title: "Ms Office", value: "80" },
     { id: 2, title: "Photoshop", value: "75" },
@@ -452,14 +444,6 @@ const state = (props) => {
     });
   }, []);
 
-  const setCurrentPortfolio = useCallback((value) => {
-    console.log('called setCurrentPortfolio with', value)
-    dispatch({
-      type : CURRENTPORTFOLIO,
-      payload : value ? value : null
-    });
-  }, []);
-
   const {
     modal,
     serviceModal,
@@ -476,7 +460,6 @@ const state = (props) => {
     testimonalData,
     socialData,
     projectData,
-    currentPortfolio,
     softwareSkills
   } = state;
 
@@ -512,7 +495,7 @@ const state = (props) => {
               icon: "squares",
               name: value.name,
               desc: value.desc,
-              image: value.image.url,
+              img: value.image.url,
               charge: value.charge,
             };
           })
@@ -661,8 +644,6 @@ const state = (props) => {
         testimonalData,
         socialData,
         projectData,
-        setCurrentPortfolio,
-        currentPortfolio,
         softwareSkills
       }}
     >
