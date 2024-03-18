@@ -8,15 +8,14 @@ import { shapes1 } from "@/utility/shapes";
 import { Fragment, useContext, useEffect, useState } from "react";
 
 const JassicaLayout = ({ darkLogo }) => {
+  const { pageContent, menus, aboutData } = useContext(context);
   useEffect(() => {
     iKnowUtilits.dataImage();
     iKnowUtilits.imgToSVG();
     iKnowUtilits.menuHoverEffect();
-
-  }, []);
+  }, [aboutData]);
 
   const [activeNav, setActiveNav] = useState(null);
-  const { pageContent, menus } = useContext(context);
   const [copyRightClass, setCopyRightClass] = useState("hidden");
   return (
     <Fragment>

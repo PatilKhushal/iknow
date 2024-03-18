@@ -2,14 +2,16 @@ import { context } from "@/context/context";
 import { useContext, useState } from "react";
 
 const Portfolio = () => {
-  const { setPortfolioModal, modalToggle, projectData } = useContext(context);
+  const { setPortfolioModal, modalToggle, projectData, setCurrentPortfolio } = useContext(context);
   const [active, setActive] = useState("all");
+  console.log('active', active);
   const activeLi = (value) => (active == value ? "current" : "");
   const activeContent = (value) => {
-    return active === "all" || active === value ? "show" : "hidden";
+    return active === "all" || active == value ? "show" : "hidden";
   };
 
   const handelClick = (value, e) => {
+    console.log('handleclick value', value)
     e.preventDefault();
     // First, set the "active" state to hide all items
     setActive("none");
@@ -25,41 +27,53 @@ const Portfolio = () => {
         <span>Resume</span>
         <h3>My works that I did for clients</h3>
       </div>
-      {projectData ?  (
+      {projectData?.data ?  (
         <>
           <div className="portfolio_filter">
             <ul>
-              <li>
-                <a
-                  href="#"
-                  className={activeLi("all")}
-                  onClick={(e) => handelClick("all", e)}
-                  data-filter="*"
-                >
-                  All
-                </a>
-              </li>
+              {
+                projectData.options.map((value) => {
+                  return <li key={Math.random()}>
+                  <a
+                    href="#"
+                    className={value == 'All' ? activeLi("all") : activeLi(`.${value}`)}
+                    onClick={(e) => {
+                      handelClick(value == 'All' ? 'all' : `${value}`, e)
+                    }}
+                    data-filter={value == 'All' ? '*' : `.${value}`}
+                  >
+                    {value}
+                  </a>
+                </li>
+                })
+              }
             </ul>
           </div>
           <div className="portfolio_list">
             <ul className="gallery_zoom">
               {
-                projectData.map((value) => {
-                  return <li className={`detail ${activeContent("detail")}`} key={value.id}>
+                projectData.data.map((value) => {
+                  return <li className={`detail ${value.techstack.map((tech) => {tech = tech.trim(); return ` ${activeContent(tech)} `})}`} key={value.id}>
                   <div className="list_inner">
                     <div className="image">
                       <img src="/img/thumbs/1-1.jpg" alt="image" />
-                      <div className="main" data-img-url={value.image} style={{border : '2px solid black'}}/>
+                      <div className="main" data-img-url={value.image}/>
                     </div>
                     <div className="overlay" />
                     <img className="svg" src="/img/svg/text.svg" alt="image" />
                     <div className="details">
                       <span>{value.title}</span>
-                      <div style={{display:"flex",  justifyContent : "center", gap : '20px'}}>
-                        <a href={value.githuburl}><img src={`/img/svg/social/github.svg`} alt="" /></a>
-                        <a href={value.liveurl}><img src={`/img/svg/right-arrow.svg`} alt="" /></a>
-                      </div>
                     </div>
+                    <a
+                className="iknow_tm_full_link portfolio_popup"
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  modalToggle(true);
+                  setPortfolioModal(true);
+                  setCurrentPortfolio(value);
+                }}
+              />
                   </div>
                 </li>
                 })

@@ -23,11 +23,13 @@ const type = {
   ABOUTDATA: "ABOUTDATA",
   SERVICEDATA: "SERVICEDATA",
   SKILLDATA: "SKILLDATA",
-  EDUCATIONDATA : "EDUCATIONDATA",
-  EXPERIENCEDATA : "EXPERIENCEDATA",
-  TESTIMONALDATA : 'TESTIMONALDATA',
-  SOCIALDATA : 'SOCIALDATA',
-  PROJECTDATA : 'PROJECTDATA'
+  EDUCATIONDATA: "EDUCATIONDATA",
+  EXPERIENCEDATA: "EXPERIENCEDATA",
+  TESTIMONALDATA: "TESTIMONALDATA",
+  SOCIALDATA: "SOCIALDATA",
+  PROJECTDATA: "PROJECTDATA",
+  CURRENTPORTFOLIO : "CURRENTPORTFOLIO",
+  SOFTWARESKILL : "SOFTWARESKILL" 
 };
 const {
   MODAL,
@@ -42,7 +44,9 @@ const {
   PROJECTDATA,
   SKILLDATA,
   EDUCATIONDATA,
-  EXPERIENCEDATA
+  EXPERIENCEDATA,
+  CURRENTPORTFOLIO,
+  SOFTWARESKILL
 } = type;
 
 const context = createContext();
@@ -115,6 +119,16 @@ const reducer = (state, action) => {
         ...state,
         projectData: payload,
       };
+    case CURRENTPORTFOLIO:
+      return {
+        ...state,
+        currentPortfolio: payload,
+      };
+    case SOFTWARESKILL:
+      return {
+        ...state,
+        softwareSkills: payload,
+      };
     default:
       return state;
   }
@@ -158,7 +172,7 @@ const state = (props) => {
       title: "World leading UI/UX designer",
       subTitle:
         "A passionate UI/UX Designer and Web Developer based In NYC, USA",
-      youtube : "7e90gBu4pas"
+      youtube: "7e90gBu4pas",
     },
     serviceData: [
       {
@@ -225,7 +239,7 @@ const state = (props) => {
         date: "2015 - 2017",
       },
     ],
-    educationData : [
+    educationData: [
       {
         id: 1,
         subject: "Cognitive Sciences",
@@ -248,72 +262,79 @@ const state = (props) => {
         date: "2012 - 2015",
       },
     ],
-    testimonalData : [
+    testimonalData: [
       {
-        id : 1,
+        id: 1,
         review:
           "These people really know what they are doing! Great customer support availability and supperb kindness. I am very happy that I've purchased this liscense!!!",
-          img : "/img/testimonials/1.jpg",
-          name : "Jecob Oramson",
-          position : "Designer"
+        img: "/img/testimonials/1.jpg",
+        name: "Jecob Oramson",
+        position: "Designer",
       },
       {
-        id : 2,
+        id: 2,
         review:
           "The design is elegant. The customer support on this product is also amazing. I would highly recommend you to purchase templates from the Marketify team!",
-          img : "/img/testimonials/2.jpg",
-          name : "Kerry Hudson",
-          position : "IBO. Corp"
+        img: "/img/testimonials/2.jpg",
+        name: "Kerry Hudson",
+        position: "IBO. Corp",
       },
       {
-        id : 3,
+        id: 3,
         review:
           "Not only was customer support very fast, but the design is very professional. Will definitely be looking for new products in the future from this author.",
-          img : "/img/testimonials/3.jpg",
-          name : "Albert Walker",
-          position : "Singer"
+        img: "/img/testimonials/3.jpg",
+        name: "Albert Walker",
+        position: "Singer",
       },
       {
-        id : 4,
+        id: 4,
         review:
           "The Author had done a great job, it's clean and easy to understand the code. Comment blocks made it really easy to read the code.",
-          img : "/img/testimonials/4.jpg",
-          name : "Arnold Hookins",
-          position : "Photographer"
+        img: "/img/testimonials/4.jpg",
+        name: "Arnold Hookins",
+        position: "Photographer",
       },
-      
+
       {
-        id : 5,
+        id: 5,
         review:
           "I can't believe I got support and my problem resolved in minutes from posting my question. Simply amazing team and amazing theme! Thank you!",
-          img : "/img/testimonials/5.jpg",
-          name : "Aura Brooklyn",
-          position : "Fashion Model"
+        img: "/img/testimonials/5.jpg",
+        name: "Aura Brooklyn",
+        position: "Fashion Model",
       },
     ],
-    socialData : [
+    socialData: [
       {
-          id : 1,
-          url : "#",
-          image : "/img/svg/social/facebook.svg"
+        id: 1,
+        url: "#",
+        image: "/img/svg/social/facebook.svg",
       },
       {
-          id : 2,
-          url : "#",
-          image : "/img/svg/social/twitter.svg"
+        id: 2,
+        url: "#",
+        image: "/img/svg/social/twitter.svg",
       },
       {
-          id : 3,
-          url : "#",
-          image : "/img/svg/social/youtube.svg"
+        id: 3,
+        url: "#",
+        image: "/img/svg/social/youtube.svg",
       },
       {
-          id : 4,
-          url : "#",
-          image : "/img/svg/social/instagram.svg"
+        id: 4,
+        url: "#",
+        image: "/img/svg/social/instagram.svg",
       },
-  ],
-  projectData : null
+    ],
+    projectData: null,
+    currentPortfolio : null,
+    softwareSkills : [
+      { id: 1, title: "Ms Office", value: "80" },
+    { id: 2, title: "Photoshop", value: "75" },
+    { id: 3, title: "Illustrator", value: "90" },
+    { id: 4, title: "Figma", value: "65" },
+    ]
   };
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -367,8 +388,7 @@ const state = (props) => {
       title: value && value.title ? value.title : state.aboutData.title,
       subTitle:
         value && value.subTitle ? value.subTitle : state.aboutData.title,
-      youtube:
-        value && value.youtube ? value.youtube : state.aboutData.youtube,
+      youtube: value && value.youtube ? value.youtube : state.aboutData.youtube,
     };
     dispatch({
       type: ABOUTDATA,
@@ -390,13 +410,20 @@ const state = (props) => {
     });
   }, []);
   
+  const setSoftwareSkill = useCallback((value) => {
+    dispatch({
+      type: SOFTWARESKILL,
+      payload: value ? value : state.softwareSkills,
+    });
+  }, []);
+
   const setEducationData = useCallback((value) => {
     dispatch({
       type: EDUCATIONDATA,
       payload: value ? value : state.educationData,
     });
   }, []);
-  
+
   const setExperienceData = useCallback((value) => {
     dispatch({
       type: EXPERIENCEDATA,
@@ -410,14 +437,14 @@ const state = (props) => {
       payload: value ? value : state.testimonalData,
     });
   }, []);
-  
+
   const setSocialData = useCallback((value) => {
     dispatch({
       type: SOCIALDATA,
       payload: value ? value : state.socialData,
     });
   }, []);
-  
+
   const setProjectData = useCallback((value) => {
     dispatch({
       type: PROJECTDATA,
@@ -425,7 +452,14 @@ const state = (props) => {
     });
   }, []);
 
-  
+  const setCurrentPortfolio = useCallback((value) => {
+    console.log('called setCurrentPortfolio with', value)
+    dispatch({
+      type : CURRENTPORTFOLIO,
+      payload : value ? value : null
+    });
+  }, []);
+
   const {
     modal,
     serviceModal,
@@ -441,12 +475,15 @@ const state = (props) => {
     experienceData,
     testimonalData,
     socialData,
-    projectData
+    projectData,
+    currentPortfolio,
+    softwareSkills
   } = state;
 
   useEffect(() => {
     fetchData("65b3a22c01d900e96c4219ae").then((value) => {
-      console.log('fetchedData', value)
+      /* console.log('fetchedData', value) */
+
       // Setting About Data
       let user = value?.user;
       let aboutData = user?.about
@@ -459,24 +496,33 @@ const state = (props) => {
             phone: user.about.phoneNumber,
             title: user.about.title,
             subTitle: user.about.subTitle,
-            youtube: user?.youtube[0] ? user?.youtube[0].embedId : state.aboutData.youtube
+            youtube: user?.youtube[0]
+              ? user?.youtube[0].embedId
+              : state.aboutData.youtube,
           }
         : state.aboutData;
-        console.log('aboutData', aboutData)
+      /* console.log('aboutData', aboutData) */
       setAboutData(aboutData);
 
       // Setting Service Data
       let serviceData = user?.services
         ? user.services.map((value) => {
-            return { id: value._id, icon: "squares", name : value.name , desc : value.desc, image : value.image.url, charge : value.charge};
+            return {
+              id: value._id,
+              icon: "squares",
+              name: value.name,
+              desc: value.desc,
+              image: value.image.url,
+              charge: value.charge,
+            };
           })
         : state.serviceData;
-        console.log('serviceData', serviceData)
+      /* console.log('serviceData', serviceData) */
       setServiceData(serviceData);
 
       // Setting Skill Data
       let skillData = user?.skills
-        ? user.skills.map((value, index) => {
+        ? user.skills.slice(4).map((value, index) => {
             return {
               id: index + 1,
               title: value.name,
@@ -484,80 +530,111 @@ const state = (props) => {
             };
           })
         : state.skillData;
-        console.log('skillData', skillData)
+      /* console.log('skillData', skillData) */
       setSkillData(skillData);
+      
+      // Setting SoftwareSkill Data
+      let softwareSkill = user?.skills
+        ? user.skills.slice(0, 4).map((value, index) => {
+            return {
+              id: index + 1,
+              title: value.name,
+              value: `${value.percentage.toString()}`,
+            };
+          })
+        : state.softwareSkill;
+      /* console.log('softwareSkill', softwareSkill) */
+      setSoftwareSkill(softwareSkill)
 
       // Setting Experience Data
       let experienceData = user?.timeline
-        ? user.timeline.filter((value) => value.forEducation == false).map((value, index) => {
-            let startDate = new Date(value.startDate).getUTCFullYear();
-            let endDate = new Date(value.endDate).getUTCFullYear();
-            return {
-              id: value._id,
-              designation: value.jobTitle,
-              company: value.company_name,
-              desc: value.summary ? value.summary : "",
-              date: `${startDate}-${endDate}`,
-            };
-          })
+        ? user.timeline
+            .filter((value) => value.forEducation == false)
+            .map((value, index) => {
+              let startDate = new Date(value.startDate).getUTCFullYear();
+              let endDate = new Date(value.endDate).getUTCFullYear();
+              return {
+                id: value._id,
+                designation: value.jobTitle,
+                company: value.company_name,
+                desc: value.summary ? value.summary : "",
+                date: `${startDate}-${endDate}`,
+              };
+            })
         : state.experienceData;
-        console.log('experienceData', experienceData)
-        setExperienceData(experienceData);
-      
-        // Setting Education Data
+      /* console.log('experienceData', experienceData) */
+      setExperienceData(experienceData);
+
+      // Setting Education Data
       let educationData = user?.timeline
-        ? user.timeline.filter((value) => value.forEducation == true).map((value, index) => {
-            let startDate = new Date(value.startDate).getUTCFullYear();
-            let endDate = new Date(value.endDate).getUTCFullYear();
+        ? user.timeline
+            .filter((value) => value.forEducation == true)
+            .map((value) => {
+              let startDate = new Date(value.startDate).getUTCFullYear();
+              let endDate = new Date(value.endDate).getUTCFullYear();
+              return {
+                id: value._id,
+                subject: value.jobTitle,
+                university: value.company_name,
+                desc: value.summary ? value.summary : "",
+                date: `${startDate}-${endDate}`,
+              };
+            })
+        : state.educationData;
+      /* console.log('educationData', educationData) */
+      setEducationData(educationData);
+
+      // Setting Testimonial Data
+      let testimonalData = user?.testimonials
+        ? user.testimonials.map((value) => {
             return {
               id: value._id,
-              subject: value.jobTitle,
-              university: value.company_name,
-              desc: value.summary ? value.summary : "",
-              date: `${startDate}-${endDate}`,
+              name: value.name,
+              img: value.image.url,
+              review: value.review,
+              position: value.position,
             };
           })
-        : state.educationData;
-        console.log('educationData', educationData)
-        setEducationData(educationData);
+        : state.testimonalData;
+      /* console.log('testimonalData', testimonalData) */
+      setTestimonialData(testimonalData);
 
-        // Setting Testimonial Data
-        let testimonalData = user?.testimonials ? user.testimonials.map((value) => {
+      // Setting Social Data
+      let socialData = user?.social_handles
+        ? user.social_handles.map((value) => {
+            return {
+              id: value._id,
+              url: value.url,
+              image: value.image.url,
+            };
+          })
+        : state.socialData;
+      /* console.log('socialData', socialData) */
+      setSocialData(socialData);
+
+      // Setting Project Data
+      let options = ['All'];
+      let data =
+        user?.projects &&
+        user.projects.map((value) => {
+          value.techStack.map((tech) => {
+            tech = tech.trim();
+            if(!options.includes(tech))
+              options.push(tech);
+          })
           return {
-            id : value._id,
-            name : value.name,
-            img : value.image.url,
-            review : value.review,
-            position : value.position
-          }
-        }) : state.testimonalData;
-        console.log('testimonalData', testimonalData)
-        setTestimonialData(testimonalData);
+            id: value._id,
+            title: value.title,
+            image: value.image.url,
+            liveurl: value.liveurl,
+            githuburl: value.githuburl,
+            techstack : value.techStack
+          };
+        });
 
-        // Setting Social Data
-        let socialData = user?.social_handles ? user.social_handles.map((value) => {
-          return  {
-            id : value._id,
-            url : value.url,
-            image : value.image.url
-          }
-        }) : state.socialData;
-        console.log('socialData', socialData)
-        setSocialData(socialData);
-
-        // Setting Project Data
-        let projectData = user?.projects && user.projects.map((value) => {
-          return {
-            id : value._id,
-            title : value.title,
-            image : value.image.url,
-            liveurl : value.liveurl,
-            githuburl : value.githuburl
-          }
-        })
-        console.log('projectData', projectData)
-        setProjectData(projectData);       
-
+        console.log('options', options)
+      console.log('projectData', {options, data})
+      setProjectData({options, data});
     });
   }, []);
 
@@ -583,7 +660,10 @@ const state = (props) => {
         experienceData,
         testimonalData,
         socialData,
-        projectData
+        projectData,
+        setCurrentPortfolio,
+        currentPortfolio,
+        softwareSkills
       }}
     >
       {props.children}

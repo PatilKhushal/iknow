@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 
 const Resume = () => {
-  const { experienceData, educationData, skillData } = useContext(context);
+  const { experienceData, educationData, skillData, softwareSkills } = useContext(context);
   useEffect(() => {
     document.querySelectorAll(".progress_inner").forEach(function (progress) {
       var pValue = parseInt(progress.dataset.value, 10);
@@ -27,15 +27,6 @@ const Resume = () => {
       });
     });
   }, [skillData]);
-
-  
-
-  const softwareSkills = [
-    { id: 1, title: "Ms Office", value: "80" },
-    { id: 2, title: "Photoshop", value: "75" },
-    { id: 3, title: "Illustrator", value: "90" },
-    { id: 4, title: "Figma", value: "65" },
-  ];
 
   return (
     <div className="iknow_tm_resume">

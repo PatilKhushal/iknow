@@ -7,9 +7,10 @@ const ModalLayout = ({ children, nullValue }) => {
   useEffect(() => {
     iKnowUtilits.imgToSVG();
     iKnowUtilits.dataImage();
-  }, []);
+  });
 
   const { modalToggle } = useContext(context);
+  console.log(nullValue, modalToggle)
   let domNode = useClickOutside(() => {
     modalToggle(false);
     nullValue(null);

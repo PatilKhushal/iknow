@@ -8,7 +8,7 @@ const Jessica = ({
   shapes1,
   setCopyRightClass,
 }) => {
-  const {aboutData} = useContext(context)
+  const {aboutData} = useContext(context);
   return (
     <div className="iknow_tm_hero">
       <div className="background_shape" />

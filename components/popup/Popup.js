@@ -11,7 +11,7 @@ const Popup = () => {
   return (
     <Fragment>
       <VideoPopup />
-      {modal && portfolioModal && <PortfolioPopup />}
+      {modal && portfolioModal && <PortfolioPopup/>}
       {modal && serviceModal && <ServicePopup />}
       {modal && blogModal && <BlogPopup />}
     </Fragment>
