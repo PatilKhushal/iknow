@@ -1,3 +1,4 @@
+import DarkToggle from "./DarkToggle";
 import SocialIcons from "./SocialIcons";
 
 const TopBar = ({ topbarIcon = true, darkLogo = true }) => {
@@ -16,6 +17,8 @@ const TopBar = ({ topbarIcon = true, darkLogo = true }) => {
           </div>
           <div className="right">
             {topbarIcon && <SocialIcons />}
+            {/* Dark Mode Toggle */}
+            <DarkToggle/>
             <div className="iknow_tm_button">
               <a href="img/cv/1.jpg" download>
                 Download CV

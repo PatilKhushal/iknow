@@ -15,7 +15,7 @@ const JassicaLayout = ({ darkLogo }) => {
     iKnowUtilits.menuHoverEffect();
   }, [aboutData]);
 
-  const [activeNav, setActiveNav] = useState(null);
+  const [activeNav, setActiveNav] = useState('about');
   const [copyRightClass, setCopyRightClass] = useState("hidden");
   return (
     <Fragment>

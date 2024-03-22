@@ -48,11 +48,11 @@ const Testimonials = () => {
           testimonialItems == 1 ? "no-sadow" : ""
         }`}
       >
-        <Swiper {...props}>
+        <Swiper {...props} style={{height : "100%"}}>
           {
             testimonalData.map((value) => {
-              return <SwiperSlide className="list_inner" key={value.id}>
-            <div className="in">
+              return <SwiperSlide className="list_inner" key={value.id} style={{padding : "10px"}}>
+            <div className="in" style={{height : "100%", boxShadow : "0px 0px 10px 1px black", display : "flex", flexDirection : "column", justifyContent :"space-between"}}>
               <div className="text">
                 <p>
                   {value.review}

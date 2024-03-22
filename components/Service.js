@@ -17,12 +17,12 @@ const Service = () => {
                 <span className="icon">
                   <img
                     className="svg"
-                    src={`/img/svg/${service.icon}.svg`}
+                    src={service.img}
                     alt="image"
                   />
                 </span>
                 <h3 className="title">{service.name}</h3>
-                {service.charge && <h4>{service.charge}</h4>}
+                {service.charge && <h4 style={{marginBottom : "10px",  border : "1px solid"}}>{service.charge}</h4>}
                 <p className="text">{service.desc}</p>
                 <a
                   className="iknow_tm_full_link"
